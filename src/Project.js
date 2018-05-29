@@ -8,7 +8,7 @@ class Project extends Component {
           <div className="row">
             <div className="col-md-7">
               <a href="#">
-                <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="" />
+                <img className="img-fluid rounded mb-3 mb-md-0" src="https://res.cloudinary.com/jtam/image/upload/v1527549848/universe-2742113_1920_vuzmhp.jpg" alt="" />
               </a>
             </div>
             <div className="col-md-5">

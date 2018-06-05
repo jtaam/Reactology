@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './Components/Header/Header';
+import Home from './Components/Home/Home';
+import Footer from './Components/Footer/Footer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Reactology</h1>
-        </header>
-        <p className="App-intro">
-          The site is under <code>coding</code>.
-        </p>
+       <Header />
+       <Home />
+       <Footer />
       </div>
     );
   }

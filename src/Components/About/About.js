@@ -1,71 +1,48 @@
 import React, { Component } from 'react';
 import './About.css';
+import axios from 'axios';
 
 export default class About extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      profiles: []
+    }
+  }
+
+  componentDidMount(){
+    axios.get('https://jsonplaceholder.typicode.com/photos')
+      .then(res => {
+        const profiles = res.data.slice(0,6);
+        this.setState({profiles})
+      })
+  }
+
   render() {
     return (
-      <div class="container">
-        <h1 class="my-4">About Us
-        <small>It's Nice to Meet You!</small>
+      <div className="container">
+        <h1 className="my-4">About Us
+        <small> It's Nice to Meet You!</small>
         </h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
 
-        <div class="row">
+        <div className="row">
 
-          <div class="col-lg-12">
-            <h2 class="my-4">Our Team</h2>
+          <div className="col-lg-12">
+            <h2 className="my-4">Our Team</h2>
           </div>
 
-          <div class="col-lg-4 col-sm-6 text-center mb-4">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="" />
-            <h3>John Smith
-            <small>Job Title</small>
-            </h3>
-            <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-          </div>
-
-          <div class="col-lg-4 col-sm-6 text-center mb-4">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="" />
-            <h3>John Smith
-            <small>Job Title</small>
-            </h3>
-            <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-          </div>
-
-          <div class="col-lg-4 col-sm-6 text-center mb-4">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="" />
-            <h3>John Smith
-            <small>Job Title</small>
-            </h3>
-            <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-          </div>
-
-          <div class="col-lg-4 col-sm-6 text-center mb-4">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="" />
-            <h3>John Smith
-            <small>Job Title</small>
-            </h3>
-            <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-          </div>
-
-          <div class="col-lg-4 col-sm-6 text-center mb-4">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="" />
-            <h3>John Smith
-            <small>Job Title</small>
-            </h3>
-            <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-          </div>
-
-          <div class="col-lg-4 col-sm-6 text-center mb-4">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="" />
-            <h3>John Smith
-            <small>Job Title</small>
-            </h3>
-            <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-          </div>
+          {this.state.profiles.map(profile =>           
+            <div className="col-lg-4 col-sm-6 text-center mb-4" key={profile.id}>
+              <img className="rounded-circle img-fluid d-block mx-auto" src={profile.url} alt="" style={{height:200, width:200}} />
+              <h3>John Smith
+              <small> Job Title</small>
+              </h3>
+              <p>{profile.title}</p>
+            </div>          
+          )}
 
         </div>
-
       </div>
     )
   }

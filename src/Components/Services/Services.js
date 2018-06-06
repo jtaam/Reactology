@@ -1,6 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Services extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      services : []
+    };
+  }
+
+  componentDidMount(){
+    axios.get('https://jsonplaceholder.typicode.com/photos')
+      .then( res => {
+        const services = res.data.slice(0,9);
+        this.setState({ services });
+      })
+  }
+
+
   render() {
     return (
       <React.Fragment>
@@ -19,141 +37,23 @@ export default class Services extends Component {
           <div className="container">
             <div className="row">
 
-              <div className="col-md-4">
+            {this.state.services.map(service =>            
+              <div className="col-md-4" key={service.id}>
                 <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%' , display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
+                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%' , display: 'block' }} src={service.url} data-holder-rendered="true" />
                   <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p className="card-text">{service.title}</p>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
                         <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
                         <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
                       </div>
-                      <small className="text-muted">9 mins</small>
+                      <small className="text-muted">Img No: {service.id}</small>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%', display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
-                  <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%', display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
-                  <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%', display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
-                  <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%', display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
-                  <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%', display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
-                  <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%', display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
-                  <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%', display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
-                  <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card mb-4 box-shadow">
-                  <img className="card-img-top" alt="Thumbnail [100%x225]" style={{ height: 225, width: '100%', display: 'block' }} src="https://placekitten.com/348/225" data-holder-rendered="true" />
-                  <div className="card-body">
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small className="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </div>                
+              )}
 
             </div>
           </div>
